@@ -82,6 +82,11 @@ class SchemaData: ObservableObject {
     @Published var personJobTitle: String = ""
     @Published var personCompany: String = ""
     @Published var personSocialProfiles: [String] = []
+    
+    @Published var breadcrumbs: [Breadcrumb] = [
+            Breadcrumb(position: 1, name: "", item: ""),
+            Breadcrumb(position: 2, name: "", item: "")
+        ]
 }
 
 // Enum for days of the week
@@ -218,4 +223,12 @@ struct LocalBusinessSchema: Codable {
         case type = "@type"
         case name, image, id = "@id", url, telephone, priceRange, address, geo, openingHoursSpecification, sameAs, department
     }
+}
+
+// Breadcrumb Model
+struct Breadcrumb: Identifiable, Codable {
+    var id = UUID()
+    var position: Int
+    var name: String
+    var item: String
 }

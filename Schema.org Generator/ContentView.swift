@@ -25,6 +25,8 @@ struct ContentView: View {
                 WebsiteGeneratorView()
             case "Person":
                 PersonGeneratorView()
+            case "Breadcrumb":
+                BreadcrumbGeneratorView()
             default:
                 Text("Select a generator from the sidebar")
                     .font(.title2)

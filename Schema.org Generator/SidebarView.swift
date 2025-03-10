@@ -14,6 +14,8 @@ struct SidebarView: View {
     var body: some View {
         List(selection: $selectedGenerator) {
             Section(header: Text("Generators")) {
+                Label("Breadcrumb", systemImage: "arrowshape.left.arrowshape.right")
+                    .tag("Breadcrumb")
                 Label("Website", systemImage: "globe")
                     .tag("Website")
                 Label("Local Business", systemImage: "mappin.and.ellipse")
