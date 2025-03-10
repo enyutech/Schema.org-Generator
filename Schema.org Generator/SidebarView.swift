@@ -18,6 +18,8 @@ struct SidebarView: View {
                     .tag("Website")
                 Label("Local Business", systemImage: "mappin.and.ellipse")
                     .tag("Local Business")
+                Label("Person", systemImage: "person.circle")
+                    .tag("Person")
                 Label("FAQ", systemImage: "questionmark.circle")
                     .tag("FAQ")
             }

@@ -23,6 +23,8 @@ struct ContentView: View {
                 FAQGeneratorView()
             case "Website":
                 WebsiteGeneratorView()
+            case "Person":
+                PersonGeneratorView()
             default:
                 Text("Select a generator from the sidebar")
                     .font(.title2)

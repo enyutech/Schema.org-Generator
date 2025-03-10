@@ -75,6 +75,13 @@ class SchemaData: ObservableObject {
     @Published var faqItems: [FAQItem] = []
     
     @Published var websiteSchema = WebsiteSchema()
+    
+    @Published var personName: String = ""
+    @Published var personUrl: String = ""
+    @Published var personImageUrl: String = ""
+    @Published var personJobTitle: String = ""
+    @Published var personCompany: String = ""
+    @Published var personSocialProfiles: [String] = []
 }
 
 // Enum for days of the week
