@@ -87,6 +87,19 @@ class SchemaData: ObservableObject {
             Breadcrumb(position: 1, name: "", item: ""),
             Breadcrumb(position: 2, name: "", item: "")
         ]
+    
+    // Article
+    @Published var articleType: String = "Article"
+    @Published var articleURL: String = ""
+    @Published var headline: String = ""
+    @Published var articleImages: [String] = []
+    @Published var authorType: String = "Person"
+    @Published var authorName: String = ""
+    @Published var authorURL: String = ""
+    @Published var publisherName: String = ""
+    @Published var publisherLogo: String = ""
+    @Published var datePublished: Date = Date()
+    @Published var dateModified: Date? = nil
 }
 
 // Enum for days of the week
