@@ -21,6 +21,7 @@ struct JsonOutputView: View {
             
             ScrollView {
                 Text(jsonOutput.isEmpty ? "No JSON generated." : jsonOutput) // Show message if empty
+                    .textSelection(.enabled)
                     .font(.system(.body, design: .monospaced))
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color(NSColor.quaternaryLabelColor)))
