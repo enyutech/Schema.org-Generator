@@ -16,14 +16,14 @@ struct SidebarView: View {
             Section(header: Text("Generators")) {
                 Label("Breadcrumb", systemImage: "arrowshape.left.arrowshape.right")
                     .tag("Breadcrumb")
-                Label("Website", systemImage: "globe")
-                    .tag("Website")
+                Label("FAQ", systemImage: "questionmark.circle")
+                    .tag("FAQ")
                 Label("Local Business", systemImage: "mappin.and.ellipse")
                     .tag("Local Business")
                 Label("Person", systemImage: "person.circle")
                     .tag("Person")
-                Label("FAQ", systemImage: "questionmark.circle")
-                    .tag("FAQ")
+                Label("Website", systemImage: "globe")
+                    .tag("Website")
             }
         }
         .listStyle(SidebarListStyle())
