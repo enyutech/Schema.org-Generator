@@ -10,6 +10,7 @@ import SwiftUI
 struct GeneralInfoView: View {
     @ObservedObject var schemaData: SchemaData
     var isOrgGeneratorView = false
+    @State private var selectedSpecificType: String = ""
 
     var body: some View {
         VStack() {
@@ -27,6 +28,25 @@ struct GeneralInfoView: View {
                     }
                     .pickerStyle(MenuPickerStyle())
                     .frame(maxWidth: 515)
+                    .onChange(of: schemaData.businessType) { _ in
+                        schemaData.selectedSpecificType = nil
+                    }
+                }
+
+                // More Specific @type Picker (Only Show When Needed)
+                if !(schemaData.specificBusinessTypes[schemaData.businessType] ?? []).isEmpty {
+                    GridRow {
+                        Picker("More Specific @type:", selection: Binding(
+                            get: { schemaData.selectedSpecificType ?? "" },
+                            set: { schemaData.selectedSpecificType = $0.isEmpty ? nil : $0 }
+                        )) {
+                            ForEach(schemaData.specificBusinessTypes[schemaData.businessType] ?? [], id: \.self) { specificType in
+                                Text(specificType).tag(specificType)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        .frame(maxWidth: 515)
+                    }
                 }
             }
             
@@ -73,7 +93,7 @@ struct GeneralInfoView: View {
                         .textFieldStyle(.roundedBorder)
                 }
                 
-                if schemaData.businessType == "LocalBusiness" && !isOrgGeneratorView {
+                if !isOrgGeneratorView {
                     GridRow {
                         Text("Price Range:")
                             .frame(width: 150, alignment: .trailing)
@@ -92,5 +112,19 @@ struct GeneralInfoView: View {
             .padding()
         }
         .padding()
+    }
+    
+    // Extracted into computed property
+    private var businessTypeOptions: some View {
+        ForEach(schemaData.businessTypes, id: \.self) { type in
+            Text(type).tag(type)
+        }
+    }
+
+    // Extracted specific type options into computed property
+    private var specificTypeOptions: some View {
+        ForEach(schemaData.specificBusinessTypes[schemaData.businessType] ?? [], id: \.self) { specificType in
+            Text(specificType).tag(specificType)
+        }
     }
 }

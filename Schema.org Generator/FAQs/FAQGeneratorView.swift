@@ -16,7 +16,7 @@ struct FAQGeneratorView: View {
 
     var body: some View {
         VStack {
-            Text("FAQ Page Schema Generator")
+            Text("FAQ Schema Generator")
                 .font(.headline)
                 .padding()
                 .foregroundColor(.primary)

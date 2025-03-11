@@ -11,7 +11,6 @@ import AppKit // Required for clipboard functionality
 struct LocalBusinessGeneratorView: View {
     @State private var showJsonOutput = false
     @State private var jsonOutput: String = ""
-//    @State private var openingHours: [OperatingHour] = []
     @ObservedObject var schemaData = SchemaData() // Shared data object
 
     var body: some View {
@@ -89,18 +88,20 @@ struct LocalBusinessGeneratorView: View {
             )
         }
         
+        let businessType = (schemaData.selectedSpecificType?.isEmpty == false) ? schemaData.selectedSpecificType! : schemaData.businessType
+
         let businessSchema = LocalBusinessSchema(
             context: context,
-            type: schemaData.businessType,
+            type: businessType,  // Use the more specific type if set
             name: schemaData.name,
             image: schemaData.imageUrl,
             id: schemaData.id,
             url: schemaData.url,
             telephone: schemaData.telephone,
             priceRange: schemaData.priceRange,
-            address: address, // Fix applied here
+            address: address,
             geo: geo,
-            openingHoursSpecification: openingHoursSpecification, // Fix applied here
+            openingHoursSpecification: openingHoursSpecification,
             sameAs: schemaData.socialProfiles,
             department: departmentData
         )

@@ -20,19 +20,12 @@ class SchemaData: ObservableObject {
     @Published var paymentAccepted: String = ""
     @Published var priceRange: String = ""
     @Published var slogan: String = ""
-
-    // Selectable Business Types
+    @Published var selectedSpecificType: String? = nil
     @Published var businessType: String = "LocalBusiness"
-
-    let businessTypes: [String] = [
-        "LocalBusiness", "AnimalShelter", "ArchiveOrganization", "AutomotiveBusiness",
-        "ChildCare", "Dentist", "DryCleaningOrLaundry", "EmergencyService",
-        "EmploymentAgency", "EntertainmentBusiness", "FinancialService", "FoodEstablishment",
-        "GovernmentOffice", "HealthAndBeautyBusiness", "HomeAndConstructionBusiness",
-        "InternetCafe", "LegalService", "Library", "LodgingBusiness",
-        "MedicalBusiness", "ProfessionalService", "RadioStation", "RealEstateAgent",
-        "RecyclingCenter", "SelfStorage", "ShoppingCenter", "SportsActivityLocation",
-        "Store", "TelevisionStation", "TouristInformationCenter", "TravelAgency"
+    @Published var businessTypes: [String] = ["LocalBusiness", "LegalService", "MedicalBusiness"]
+    @Published var specificBusinessTypes: [String: [String]] = [
+        "LegalService": ["Attorney", "Notary"],
+        "MedicalBusiness": ["Physician"]
     ]
 
     // Address
