@@ -253,7 +253,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 408;
+				CURRENT_PROJECT_VERSION = 409;
 				DEVELOPMENT_ASSET_PATHS = "\"Schema.org Generator/Preview Content\"";
 				DEVELOPMENT_TEAM = 3A4NJY24UK;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -285,7 +285,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 408;
+				CURRENT_PROJECT_VERSION = 409;
 				DEVELOPMENT_ASSET_PATHS = "\"Schema.org Generator/Preview Content\"";
 				DEVELOPMENT_TEAM = 3A4NJY24UK;
 				ENABLE_HARDENED_RUNTIME = YES;

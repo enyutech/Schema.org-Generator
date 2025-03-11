@@ -11,7 +11,7 @@ struct OnlinePresenceView: View {
     @Binding var socialProfiles: [String]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack {
             Text("Online Presence (same as)")
                 .font(.headline)
                 .padding(.bottom, 5)
@@ -30,7 +30,6 @@ struct OnlinePresenceView: View {
                                 .foregroundColor(.red)
                         }
                         .buttonStyle(BorderlessButtonStyle())
-                        .disabled(socialProfiles.count == 1) // Prevent removing last field
                     }
                 }
                 .onMove(perform: moveProfile)
@@ -47,6 +46,7 @@ struct OnlinePresenceView: View {
             .buttonStyle(BorderlessButtonStyle())
             .padding(.top, 5)
         }
+        .frame(width: 500)
         .padding()
     }
 
@@ -57,9 +57,7 @@ struct OnlinePresenceView: View {
 
     // Function to remove a profile field
     private func removeProfile(at index: Int) {
-        if socialProfiles.count > 1 {
-            socialProfiles.remove(at: index)
-        }
+        socialProfiles.remove(at: index)
     }
 
     // Function to handle reordering

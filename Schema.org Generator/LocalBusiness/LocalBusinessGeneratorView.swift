@@ -61,7 +61,11 @@ struct LocalBusinessGeneratorView: View {
     private func generateJsonLD() {
         let context = "https://schema.org"
 
-        let address = Address(
+        let address: Address? = schemaData.streetAddress.isEmpty ||
+        schemaData.city.isEmpty ||
+        schemaData.state.isEmpty ||
+        schemaData.postalCode.isEmpty ||
+        schemaData.country.isEmpty ? nil : Address(
             type: "PostalAddress",
             streetAddress: schemaData.streetAddress,
             addressLocality: schemaData.city,
@@ -70,15 +74,17 @@ struct LocalBusinessGeneratorView: View {
             addressCountry: schemaData.country
         )
 
-        let geo = GeoCoordinates(
+        let geo: GeoCoordinates? = (schemaData.geoLatitude == 0.0 && schemaData.geoLongitude == 0.0) ? nil : GeoCoordinates(
             type: "GeoCoordinates",
             latitude: schemaData.geoLatitude,
             longitude: schemaData.geoLongitude
         )
 
-        let openingHoursSpecification = schemaData.openingHours.isEmpty ? [] : schemaData.openingHours.map { $0.toOpeningHoursSpecification() }
+        let openingHoursSpecification: [OpeningHoursSpecification]? = schemaData.openingHours.isEmpty ? nil : schemaData.openingHours.map {
+            $0.toOpeningHoursSpecification()
+        }
 
-        let departmentData = schemaData.departments.map { department in
+        let departmentData: [Department]? = schemaData.departments.isEmpty ? nil : schemaData.departments.map { department in
             Department(
                 type: department.type,
                 name: department.name,
@@ -98,11 +104,11 @@ struct LocalBusinessGeneratorView: View {
             id: schemaData.id,
             url: schemaData.url,
             telephone: schemaData.telephone,
-            priceRange: schemaData.priceRange,
+            priceRange: schemaData.priceRange.isEmpty ? nil : schemaData.priceRange,
             address: address,
             geo: geo,
             openingHoursSpecification: openingHoursSpecification,
-            sameAs: schemaData.socialProfiles,
+            sameAs: schemaData.socialProfiles.isEmpty || schemaData.socialProfiles.first?.isEmpty == true ? nil : schemaData.socialProfiles,
             department: departmentData
         )
 

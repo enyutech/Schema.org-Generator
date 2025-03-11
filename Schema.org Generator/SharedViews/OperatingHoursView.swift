@@ -14,7 +14,7 @@ struct OperatingHoursView: View {
     @State private var isOpen24_7: Bool = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack {
             Text("Operating Hours")
                 .font(.headline)
                 .padding(.bottom, 5)
@@ -92,6 +92,7 @@ struct OperatingHoursView: View {
                 }
             }
         }
+        .frame(width: 500)
         .padding()
         .onAppear {
             // Check if the data is already 24/7

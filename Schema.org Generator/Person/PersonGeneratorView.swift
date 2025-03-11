@@ -64,6 +64,11 @@ struct PersonGeneratorView: View {
             .padding(.vertical, 10)
 
             OnlinePresenceView(socialProfiles: $schemaData.personSocialProfiles)
+            
+            Divider()
+                .padding(.vertical, 10)
+            
+            KnowsAboutView(knowsAbout: $schemaData.personKnowsAbout)
 
             // Generate JSON-LD Button
             HStack {
@@ -99,6 +104,10 @@ struct PersonGeneratorView: View {
                 "@type": "Organization",
                 "name": schemaData.personCompany
             ]
+        }
+        
+        if !schemaData.personKnowsAbout.isEmpty {
+            personSchema["knowsAbout"] = schemaData.personKnowsAbout
         }
         
         if !schemaData.personJobTitle.trimmingCharacters(in: .whitespaces).isEmpty {

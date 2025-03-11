@@ -75,6 +75,7 @@ class SchemaData: ObservableObject {
     @Published var personJobTitle: String = ""
     @Published var personCompany: String = ""
     @Published var personSocialProfiles: [String] = []
+    @Published var personKnowsAbout: [String] = []
     
     @Published var breadcrumbs: [Breadcrumb] = [
             Breadcrumb(position: 1, name: "", item: ""),
@@ -200,6 +201,7 @@ struct WebsiteSchema: Identifiable, Codable {
     var url: String = ""
     var searchUrl: String = ""
     var queryParam: String = ""
+    var keywords: [String] = []
 }
 
 // Model for FAQ Items
@@ -217,12 +219,12 @@ struct LocalBusinessSchema: Codable {
     var id: String
     var url: String
     var telephone: String
-    var priceRange: String
-    var address: Address  // ✅ Changed from [String: String] to Address
-    var geo: GeoCoordinates // ✅ Changed from [String: Double] to GeoCoordinates
-    var openingHoursSpecification: [OpeningHoursSpecification] // ✅ Fully Codable
-    var sameAs: [String]
-    var department: [Department]  // ✅ Ensure Department is Codable
+    var priceRange: String?
+    var address: Address?  // ✅ Changed from [String: String] to Address
+    var geo: GeoCoordinates? // ✅ Changed from [String: Double] to GeoCoordinates
+    var openingHoursSpecification: [OpeningHoursSpecification]? // ✅ Fully Codable
+    var sameAs: [String]?
+    var department: [Department]?  // ✅ Ensure Department is Codable
 
     enum CodingKeys: String, CodingKey {
         case context = "@context"

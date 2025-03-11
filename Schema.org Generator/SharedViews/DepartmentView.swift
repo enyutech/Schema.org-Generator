@@ -11,7 +11,7 @@ struct DepartmentView: View {
     @Binding var departments: [Department]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack {
             Text("Departments")
                 .font(.headline)
                 .padding(.bottom, 5)
@@ -32,11 +32,12 @@ struct DepartmentView: View {
                 departmentView(for: index)
             }
         }
+        .frame(width: 500)
         .padding()
     }
 
     private func departmentView(for index: Int) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack {
             HStack {
                 TextField("Department Name", text: $departments[index].name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -80,11 +81,10 @@ struct DepartmentView: View {
             openingHoursView(for: index)
         }
         .padding(.vertical, 5)
-        .border(Color.gray.opacity(0.5))
     }
 
     private func openingHoursView(for index: Int) -> some View {
-        VStack(alignment: .leading) {
+        VStack {
             Text("Opening Hours (Optional)")
                 .font(.subheadline)
                 .padding(.top, 5)
@@ -99,6 +99,7 @@ struct DepartmentView: View {
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
             }
+            .padding(.vertical, 10)
 
             ForEach(departments[index].openingHoursSpecification.indices, id: \.self) { hourIndex in
                 HStack {
@@ -130,6 +131,7 @@ struct DepartmentView: View {
                 }
             }
         }
+        .frame(width: 500)
     }
 
     private func addDepartment() {

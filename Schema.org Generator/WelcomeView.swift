@@ -13,6 +13,12 @@ struct WelcomeView: View {
     var body: some View {
         VStack {
             Spacer()
+            if let appIcon = NSImage(named: NSImage.applicationIconName) {
+                            Image(nsImage: appIcon)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 128, height: 128)
+                        }
             Text("Schema.org Generator")
                 .font(.largeTitle)
             Text("Generate JSON-LD for your website or app.")
@@ -20,6 +26,7 @@ struct WelcomeView: View {
             Spacer()
             Text("Copyright © 2025 Enyutech LLC. All rights reserved.")
                 .font(.caption)
+                .padding()
         }
     }
 }

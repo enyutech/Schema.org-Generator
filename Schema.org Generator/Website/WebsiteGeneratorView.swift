@@ -49,6 +49,16 @@ struct WebsiteGeneratorView: View {
                     TextField("Optional string after query", text: $schemaData.websiteSchema.queryParam)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
+                
+                GridRow {
+                    Text("Keywords:")
+                        .frame(width: 150, alignment: .trailing)
+                    TextField("Enter comma-separated keywords (optional)", text: Binding(
+                        get: { schemaData.websiteSchema.keywords.joined(separator: ", ") },
+                        set: { schemaData.websiteSchema.keywords = $0.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) } }
+                    ))
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                }
             }
             .frame(maxWidth: 500)
             
@@ -75,7 +85,7 @@ struct WebsiteGeneratorView: View {
     }
 
     private func generateJsonLD() {
-        let websiteSchema: [String: Any] = [
+        var websiteSchema: [String: Any] = [
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": schemaData.websiteSchema.name,
@@ -83,9 +93,13 @@ struct WebsiteGeneratorView: View {
             "potentialAction": [
                 "@type": "SearchAction",
                 "target": "\(schemaData.websiteSchema.searchUrl){query}",
-                "query-input": "required name=query"
+                "query": "required"
             ]
         ]
+        
+        if !schemaData.websiteSchema.keywords.isEmpty {
+            websiteSchema["keywords"] = schemaData.websiteSchema.keywords.joined(separator: ", ")
+        }
 
         if let jsonData = try? JSONSerialization.data(withJSONObject: websiteSchema, options: .prettyPrinted),
            let jsonString = String(data: jsonData, encoding: .utf8) {
